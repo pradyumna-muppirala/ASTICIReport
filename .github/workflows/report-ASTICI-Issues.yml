@@ -8,7 +8,7 @@ jobs:
     timeout-minutes: 15
     steps:
     - name: consolidate ASTICI issues
-      id: report-gen
+      id: ASTICI-report-gen
       uses: gramster/github-issue-reporter@main
       with:
         repository: pradyumna-muppirala/ASTICI
