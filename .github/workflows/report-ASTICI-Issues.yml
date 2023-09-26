@@ -5,6 +5,7 @@ on:
 jobs:
   Report_gen:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
     - name: consolidate ASTICI issues
       id: report-gen
