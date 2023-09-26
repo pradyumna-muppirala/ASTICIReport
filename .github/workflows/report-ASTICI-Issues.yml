@@ -12,5 +12,5 @@ jobs:
       repository: pradyumna-muppirala/ASTICI
       githubToken: ${{ secrets.GITHUB_TOKEN }}
       days: 7
-      all: true
+      all: false
 
