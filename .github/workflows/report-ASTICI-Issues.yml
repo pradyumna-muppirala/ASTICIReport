@@ -13,4 +13,5 @@ jobs:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
       days: 7
       all: false
+      reportNameTemplate: "ASTICI-Issues-rpt-%A.md"
 
