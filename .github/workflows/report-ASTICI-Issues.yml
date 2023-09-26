@@ -3,15 +3,16 @@ on:
   schedule: 
   - cron : '0 0 * * *'
 jobs:
-  runs-on: ubuntu-latest
-  timeout-minutes: 10
-  steps:
-    name: consolidate ASTICI issues
-    uses: gramster/github-issue-reporter@main
-    with:
-      repository: pradyumna-muppirala/ASTICI
-      githubToken: ${{ secrets.GITHUB_TOKEN }}
-      days: 7
-      all: false
-      reportNameTemplate: "ASTICI-Issues-rpt-%A.md"
+  Report_gen:
+    runs-on: ubuntu-latest
+    steps:
+    - name: consolidate ASTICI issues
+      id: report-gen
+      uses: gramster/github-issue-reporter@main
+      with:
+        repository: pradyumna-muppirala/ASTICI
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
+        days: 7
+        all: false
+        reportNameTemplate: "ASTICI-Issues-rpt-%A.md"
 
