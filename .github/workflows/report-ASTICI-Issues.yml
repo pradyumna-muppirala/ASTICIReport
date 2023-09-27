@@ -16,17 +16,9 @@ jobs:
       - name : consolidate ASTICI issues
         id: ASTICI-report-gen
         run: |
-            git clone https://github.com/RafyAmgadBenjamin/ghreport.git
-            pip install --upgrade pip
-            ls
-            pwd
-            pip install -r ghreport/requirements.txt
-            ls
-            outputfname="ASTICIIssueRpt-$DAY_OF_WEEK.md"
-            echo $outputfname
-            python3 ghreport/main.py --key ${{ secrets.GITHUB_TOKEN }} --dest ./reports/$outputfname --account pradyumna=muppirala --ndays 5
-            git add ./reports/$outputfname
-            git push
+          npm install -g github-issue-reports
+          github-issue-reports -o pradyumna-muppirala -r ASTICI -t ${{ secrets.GITHUB_TOKEN }}
+          
 #      - name: install pip dependencies
 #       id: pip_dependecy_installations
 #        run: |
