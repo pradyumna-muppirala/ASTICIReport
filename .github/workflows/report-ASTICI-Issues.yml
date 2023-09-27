@@ -8,13 +8,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-    - name: consolidate ASTICI issues
-      id: ASTICI-report-gen
-      uses: gramster/github-issue-reporter@main
-      with:
-        repository: pradyumna-muppirala/ASTICI
-        githubToken: ${{ secrets.GITHUB_TOKEN }}
-        days: 7
-        all: false
-        reportNameTemplate: "ASTICI-Issues-rpt-%A.md"
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+    
+      - name: install pip dependencies
+        id: pip_dependecy_installations
+        run: |
+          pip install seaborn
+          pip install seaborn[stats]
+              
+      - name: consolidate ASTICI issues
+        id: ASTICI-report-gen
+        uses: gramster/github-issue-reporter@main
+        with:
+          repository: pradyumna-muppirala/ASTICI
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          days: 7
+          all: false
+          reportNameTemplate: "ASTICI-Issues-rpt-%A.md"
 
