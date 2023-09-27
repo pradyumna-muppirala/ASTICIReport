@@ -18,6 +18,8 @@ jobs:
         run: |
             git clone https://github.com/RafyAmgadBenjamin/ghreport.git
             pip install --upgrade pip
+            ls
+            pwd
             pip install -r requirements.txt
             ls
             outputfname = "ASTICIIssueRpt-$DAY_OF_WEEK.md"
