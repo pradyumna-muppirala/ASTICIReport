@@ -1,8 +1,8 @@
 name: Consoldate ASTICI issues into a single  report
 on:
   workflow_dispatch:
-  schedule: 
-  - cron : '20 0 * * *'
+#
+#    - cron : '20 0 * * *'
 jobs:
   Report_gen:
     runs-on: ubuntu-latest
