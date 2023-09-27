@@ -22,6 +22,7 @@ jobs:
           fetch-depth: 0
       - name: run PDF report generator with issue2report
         run: |
+            echo ${{secrets.GITHUB_TOKEN}} >> ./token
             pip install --upgrade pip
             pip install -r requirements.txt
             python3 issue2report.py -t default -gu pradyumna-muppirala -gr ASTICI_pentest_report
