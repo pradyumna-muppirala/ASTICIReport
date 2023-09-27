@@ -15,10 +15,16 @@ jobs:
 
       - name : consolidate ASTICI issues
         id: ASTICI-report-gen
+        uses: actions/checkout@v2
+        with:
+          repository: issue2report/issue2report
+          # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
+      - name: run PDF report generator with issue2report
         run: |
-          npm install -g github-issue-reports
-          github-issue-reports -o pradyumna-muppirala -r ASTICI -t ${{ secrets.GITHUB_TOKEN }}
-          
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            python3 issue2report.py -t default -gu pradyumna-muppirala -gr ASTICI_pentest_report
 #      - name: install pip dependencies
 #       id: pip_dependecy_installations
 #        run: |
