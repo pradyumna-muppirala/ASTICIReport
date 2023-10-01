@@ -12,6 +12,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: pradyumna-muppirala/ASTICIReport
+      - name: Check directory structure
+        run: |
+            pwd
+            ls -R
+            
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
@@ -43,4 +48,4 @@ jobs:
             # Optional converting Markdown to HTML (set content_type to text/html too):
             convert_markdown: true
             # Optional attachments:
-            attachments: ./ASTICIReport/reports/OWASP_webGoat-pentest-final-report-by-ASTICI.pdf
+            attachments: ./reports/OWASP_webGoat-pentest-final-report-by-ASTICI.pdf
