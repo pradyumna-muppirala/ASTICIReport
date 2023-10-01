@@ -1,43 +1,41 @@
 name: Consoldate ASTICI issues into a single  report
 on:
   workflow_dispatch:
-#
-#    - cron : '20 0 * * *'
+  push:
 jobs:
-  Report_gen:
+  Report_email:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v3
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
         with:
-          python-version: "3.9"
-
-      - name : consolidate ASTICI issues
-        id: ASTICI-report-gen
-        uses: actions/checkout@v2
-        with:
-          repository: issue2report/issue2report
-          # Shallow clones should be disabled for a better relevancy of analysis
-          fetch-depth: 0
-      - name: run PDF report generator with issue2report
-        run: |
-            echo ${{secrets.GITHUB_TOKEN}} >> ./token
-            pip install --upgrade pip
-            pip install -r requirements.txt
-            python3 issue2report.py -t default -gu pradyumna-muppirala -gr ASTICI_pentest_report
-#      - name: install pip dependencies
-#       id: pip_dependecy_installations
-#        run: |
-#         pip install seaborn
-              
-#      - name: consolidate ASTICI issues
-#       id: ASTICI-report-gen
-#       uses: gramster/github-issue-reporter@main
-#       with:
-#          repository: pradyumna-muppirala/ASTICI
-#         githubToken: ${{ secrets.GITHUB_TOKEN }}
-#         days: 7
-#         all: false
-#         reportNameTemplate: "ASTICI-Issues-rpt-%A.md"
-
+            # Required mail server address if not connection_url:
+            server_address: smtp.gmail.com
+            # Server port, default 25:
+            server_port: 465
+            # Optional whether this connection use TLS (default is true if server_port is 465)
+            secure: true
+            # Optional (recommended) mail server username:
+            username: ${{secrets.MAIL_USERNAME}}
+            # Optional (recommended) mail server password:
+            password: ${{secrets.MAIL_PASSWORD}}
+            # Required mail subject:
+            subject: Github Actions job result
+            # Required recipients' addresses:
+            to: 2021mt13115@wilp.bits-pilani.ac.in
+            # Optional Cc email address
+            cc: ${{secrets.MAIL_USERNAME}}
+            # Required sender full name (address can be skipped):
+            from: ${{secrets.MAIL_USERNAME}} # <user@example.com>
+            # Optional plain body:
+            body: Pen test report for pradyumna-muppirala/WebGoatSAST is prepared successfully!
+            # Optional HTML body read from file:
+            # Optional recipient of the email response:
+            reply_to: ${{secrets.MAIL_USERNAME}}
+            # Optional unsigned/invalid certificates allowance:
+            ignore_cert: true
+            # Optional converting Markdown to HTML (set content_type to text/html too):
+            convert_markdown: true
+            # Optional attachments:
+            attachments: reports/OWASP_webGoat-pentest-final-report-by-ASTICI.pdf
