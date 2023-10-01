@@ -27,7 +27,7 @@ jobs:
             # Optional (recommended) mail server password:
             password: ${{secrets.MAIL_PASSWORD}}
             # Required mail subject:
-            subject: Github Actions job result
+            subject: OWASP Web Goat - ASTICI Scan Report
             # Required recipients' addresses:
             to: 2021mt13115@wilp.bits-pilani.ac.in
             # Optional Cc email address
